@@ -56,6 +56,7 @@ class QueryEvaluatorTest < Test::Unit::TestCase
   end
   
   def assert_items(items, results)
+    items = [items] unless items.instance_of?(Array)
     results = results[0]
     for item in items
       found = false
