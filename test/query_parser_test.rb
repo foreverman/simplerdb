@@ -49,14 +49,14 @@ END
   end
   
   def test_valid_queries
-    VALID.each do |query|
+    (VALID.respond_to?('lines') ? VALID.lines.to_a : VALID).each do |query|
       result = @parser.parse(@lexer.lex(query.strip!))
       assert result.is_a?(Dhaka::ParseSuccessResult), query
     end
   end
   
   def test_invalid_queries
-    INVALID.each do |query|
+    (INVALID.respond_to?('lines') ? INVALID.lines.to_a : INVALID).each do |query|
       result = @parser.parse(@lexer.lex(query.strip!))
       assert !result.is_a?(Dhaka::ParseSuccessResult), query
     end
